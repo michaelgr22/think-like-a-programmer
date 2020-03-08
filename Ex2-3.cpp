@@ -2,7 +2,7 @@
 using std::cin;
 using std::cout;
 
-int main()
+void ex23()
 {
     for (int row = 0; row < 8; row++)
     {
@@ -55,8 +55,4 @@ int main()
         }
         cout << "\n";
     }
-    
 }
-
-
-
