@@ -13,6 +13,8 @@ public:
 	void removeBus(Bus bus);
 	void getBuses();
 	void getBusesavailable();
+	Bus getBuswithID(int id);
+	list<Bus> getBusList();
 private:
 	list <Bus> Bus_List;
 };

@@ -9,6 +9,7 @@ using std::cout;
 int main()
 {
 
+    /*
     Bus bus1(1, "Michael", "01:00:00", "02:00:00", "Munich", true);
     Bus bus2(1, "Hans", "02:00:00", "03:00:00", "Stuttgart", true);
     Bus bus3(1, "Claus", "03:00:00", "04:00:00", "Nuremberg", false);
@@ -30,6 +31,65 @@ int main()
     buslist.addBus(bus4);
 
     buslist.getBuses();
-    buslist.getBusesavailable();
+    buslist.getBusesavailable();*/
 
+
+    BusList buslist;
+    int choice;
+    do {
+        cout << "1. Install" << "\n";
+        cout << "2. Reservation" << "\n";
+        cout << "3. Show" << "\n";
+        cout << "4. Buses Available" << "\n";
+        cout << "5. Exit" << "\n";
+        cout << "Enter your choice: ->";
+        
+        cin >> choice;
+
+
+        if (choice == 1) {
+            cout << "BusID: " << "\n";
+            int BusId;
+            cin >> BusId;
+            cout << "driver: " << "\n";
+            string driver;
+            cin >> driver;
+            cout << "Arrival Time (Format: 00:00:00): " << "\n";
+            string arrivaltime;
+            cin >> arrivaltime;
+            cout << "Departure Time (Format: 00:00:00): " << "\n";
+            string departuretime;
+            cin >> departuretime;
+            cout << "Destination: " << "\n";
+            string destination;
+            cin >> destination;
+
+            Bus newbus(BusId, driver, arrivaltime, departuretime, destination, true);
+            buslist.addBus(newbus);
+        }
+        else if (choice == 2) {
+            cout << "Enter Bus Number: " << "\n";
+            int busnumber;
+            cin >> busnumber;
+            Bus bustoreservate = buslist.getBuswithID(busnumber);
+
+            cout << "Enter seat you want reservate: " << "\n";
+            int seatnumber;
+            cin >> seatnumber;
+            cout << "Enter your name: " << "\n";
+            string name;
+            cin >> name;
+
+            bustoreservate.addReservation(seatnumber, name);
+        }
+        else if (choice == 3) {
+            buslist.getBuses();
+        }
+        else if (choice == 4) {
+            for (Bus& bus : buslist.getBusList()) {
+                if (bus.IsBusAvailable())
+                    cout << bus.getBusID() << "\n";
+            }
+        }
+    } while (choice != 5);
 }

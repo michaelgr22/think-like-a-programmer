@@ -20,10 +20,12 @@ public:
 	void setdeparturetime(string departuretime);
 	string getdestination();
 	void setdestination(string destination);
-	string** getseats();
-	void setseats(string *seats[seat_rows * seats_per_row]);
+	int** getseats();
+	void setseats(int *seats[seat_rows * seats_per_row]);
+	string** getpassengers();
+	void setpassengers(string* seats[seat_rows * seats_per_row]);
 
-	void addReservation(int seatnumber);
+	void addReservation(int seatnumber, string passengername);
 	void removeReservation(int seatnumber);
 	void getavailableSeats();
 	void getBusInformation();
@@ -31,13 +33,16 @@ public:
 
 	void destructor();
 
+	bool operator == (const Bus& bus) const { return BusID == bus.BusID; };
+
 private:
 	int BusID;
 	string driver;
 	string arrivaltime;
 	string departuretime;
 	string destination;
-	string** seats = new string*[seat_rows * seats_per_row];
+	int** seats = new int*[seat_rows * seats_per_row];
+	string** passengers = new string * [seat_rows * seats_per_row];
 	bool available;
 };
 

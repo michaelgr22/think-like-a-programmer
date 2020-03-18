@@ -12,14 +12,30 @@ Bus::Bus() {
 	this->departuretime = "00:00:00";
 	this->destination = " ";
 	this->available = false;
+
+	//Initialize seats 
 	for (int i = 0; i < seat_rows * seats_per_row; i++) {
-		this->seats[i] = new string[seat_rows * seats_per_row];
+		this->seats[i] = new int[seat_rows * seats_per_row];
 	}
+
+	//fill seats with numbers
 	int seat_number = 1;
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
-			this->seats[row][seat_in_row] = to_string(seat_number);
+			this->seats[row][seat_in_row] = seat_number;
 			seat_number++;
+		}
+	}
+
+	//Initialize passengers 
+	for (int i = 0; i < seat_rows * seats_per_row; i++) {
+		this->passengers[i] = new string[seat_rows * seats_per_row];
+	}
+
+	//fill seats with numbers
+	for (int row = 0; row < seat_rows; row++) {
+		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
+			this->passengers[row][seat_in_row] = " ";
 		}
 	}
 }
@@ -31,14 +47,30 @@ Bus::Bus(int BusID, string driver, string arrivaltime, string departuretime, str
 	this->departuretime = departuretime;
 	this->destination = destination;
 	this->available = available;
+
+	//Initialize seats 
 	for (int i = 0; i < seat_rows * seats_per_row; i++) {
-		this->seats[i] = new string[seat_rows * seats_per_row];
+		this->seats[i] = new int[seat_rows * seats_per_row];
 	}
+
+	//fill seats with numbers
 	int seat_number = 1;
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
-			this->seats[row][seat_in_row] = to_string(seat_number);
+			this->seats[row][seat_in_row] = seat_number;
 			seat_number++;
+		}
+	}
+
+	//Initialize passengers 
+	for (int i = 0; i < seat_rows * seats_per_row; i++) {
+		this->passengers[i] = new string[seat_rows * seats_per_row];
+	}
+
+	//fill seats with numbers
+	for (int row = 0; row < seat_rows; row++) {
+		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
+			this->passengers[row][seat_in_row] = " ";
 		}
 	}
 }
@@ -73,16 +105,29 @@ string Bus::getdestination() {
 void Bus::setdestination(string destination) {
 	this->destination = destination;
 }
-string** Bus::getseats() {
+int** Bus::getseats() {
 	return this->seats;
 }
-void Bus::setseats(string *seats[seat_rows * seats_per_row]) {
+void Bus::setseats(int *seats[seat_rows * seats_per_row]) {
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
 			this->seats[row][seat_in_row] = seats[row][seat_in_row];
 		}
 	}
 }
+
+string** Bus::getpassengers() {
+	return this->passengers;
+}
+void Bus::setpassengers(string* passengers[seat_rows * seats_per_row]) {
+	for (int row = 0; row < seat_rows; row++) {
+		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
+			this->passengers[row][seat_in_row] = passengers[row][seat_in_row];
+		}
+	}
+
+}
+
 
 void Bus::getBusInformation() {
 	cout << "BusID: " << this->BusID << "\n";;
@@ -91,18 +136,24 @@ void Bus::getBusInformation() {
 	cout << "departuretime: " << this->departuretime << "\n";;
 	cout << "destination: " << this->destination << "\n";;
 
+	this->getavailableSeats();
+
+	cout << "Reservations: " << "\n";
+	for (int row = 0; row < seat_rows; row++) {
+		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
+			if (this->passengers[row][seat_in_row] != " ") {
+				cout << "Reservation: Seat " << this->seats[row][seat_in_row] << " reservated by " << this->passengers[row][seat_in_row] << "\n";
+			}
+		}
+	}
+
+}
+
+void Bus::getavailableSeats() {
 	int count = 1;
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
-			if (seat_in_row % 2 == 1) {
-				if (count < 10) {
-					cout << "0" << this->seats[row][seat_in_row] << "   ";
-				}
-				else {
-					cout << this->seats[row][seat_in_row] << "   ";
-				}
-			}
-			else {
+			if (this->passengers[row][seat_in_row] == " ") {
 				if (count < 10) {
 					cout << "0" << this->seats[row][seat_in_row] << " ";
 				}
@@ -110,33 +161,12 @@ void Bus::getBusInformation() {
 					cout << this->seats[row][seat_in_row] << " ";
 				}
 			}
-			count++;
-		}
-		cout << "\n";
-	}
-}
-
-void Bus::getavailableSeats() {
-	int count = 1;
-	for (int row = 0; row < seat_rows; row++) {
-		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
-			if (this->seats[row][seat_in_row] != "xx") {
-				if (seat_in_row % 2 == 1) {
-					if (count < 10) {
-						cout << "0" << this->seats[row][seat_in_row] << "   ";
-					}
-					else {
-						cout << this->seats[row][seat_in_row] << "   ";
-					}
-				}
-				else {
-					if (count < 10) {
-						cout << "0" << this->seats[row][seat_in_row] << " ";
-					}
-					else {
-						cout << this->seats[row][seat_in_row] << " ";
-					}
-				}
+			else
+			{
+				cout << "xx ";
+			}
+			if (seat_in_row % 2 == 1) {
+				cout << " ";
 			}
 			count++;
 		}
@@ -144,14 +174,15 @@ void Bus::getavailableSeats() {
 	}
 }
 
-void Bus::addReservation(int seatnumber) {
+void Bus::addReservation(int seatnumber, string passengername) {
 	int count = 1;
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
-			if (count == seatnumber) {
-				cout << row;
-				cout << seat_in_row;
-				this->seats[row][seat_in_row] = "--";
+			if (count == seatnumber && this->passengers[row][seat_in_row] == " ") {
+				this->passengers[row][seat_in_row] = passengername;
+			}
+			else if (count == seatnumber && this->passengers[row][seat_in_row] != " "){
+				cout << "This seat is not available.";
 			}
 			count++;
 		}
@@ -163,7 +194,8 @@ void Bus::removeReservation(int seatnumber) {
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
 			if (count == seatnumber) {
-				this->seats[row][seat_in_row] = to_string(count);
+				this->passengers[row][seat_in_row] = " ";
+				break;
 			}
 			count++;
 		}
@@ -177,6 +209,9 @@ bool Bus::IsBusAvailable() {
 void Bus::destructor() {
 	for (int i = 0; i < seat_rows * seats_per_row; i++) {
 		delete[] this->seats[i];
+	}
+	for (int i = 0; i < seat_rows * seats_per_row; i++) {
+		delete[] this->passengers[i];
 	}
 }
 

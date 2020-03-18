@@ -25,3 +25,14 @@ void BusList::getBusesavailable() {
 			it->getBusInformation();
 	}
 }
+
+Bus BusList::getBuswithID(int id) {
+	for (Bus& bus : Bus_List) {
+		if (bus.getBusID() == id)
+			return bus;
+	}
+}
+
+list<Bus> BusList::getBusList() {
+	return this->Bus_List;
+}
