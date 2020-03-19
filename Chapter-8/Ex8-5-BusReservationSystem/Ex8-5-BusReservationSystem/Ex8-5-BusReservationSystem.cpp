@@ -37,6 +37,7 @@ int main()
     BusList buslist;
     int choice;
     do {
+        
         cout << "1. Install" << "\n";
         cout << "2. Reservation" << "\n";
         cout << "3. Show" << "\n";
@@ -46,11 +47,16 @@ int main()
         
         cin >> choice;
 
-
         if (choice == 1) {
             cout << "BusID: " << "\n";
             int BusId;
             cin >> BusId;
+            while (cin.fail()) {
+                cout << "Error: Enter a number!" << endl;
+                cin.clear();
+                cin.ignore(256, '\n');
+                cin >> BusId;
+            }
             cout << "driver: " << "\n";
             string driver;
             cin >> driver;
@@ -64,14 +70,21 @@ int main()
             string destination;
             cin >> destination;
 
-            Bus newbus(BusId, driver, arrivaltime, departuretime, destination, true);
+            Bus newbus(BusId, driver, arrivaltime, departuretime, destination);
             buslist.addBus(newbus);
         }
         else if (choice == 2) {
             cout << "Enter Bus Number: " << "\n";
+
             int busnumber;
             cin >> busnumber;
-            Bus bustoreservate = buslist.getBuswithID(busnumber);
+
+            while (buslist.isBusavailable(busnumber) == false)
+            {
+                cout << "Bus not available enter new ID";
+                cin >> busnumber;
+            }
+            Bus bustoreservate = buslist.getBuswithID(busnumber);          
 
             cout << "Enter seat you want reservate: " << "\n";
             int seatnumber;
@@ -90,6 +103,13 @@ int main()
                 if (bus.IsBusAvailable())
                     cout << bus.getBusID() << "\n";
             }
+        }
+        else if (choice == 5)
+        {
+        }
+        else
+        {
+            cout << "False Number, try again!";
         }
     } while (choice != 5);
 }

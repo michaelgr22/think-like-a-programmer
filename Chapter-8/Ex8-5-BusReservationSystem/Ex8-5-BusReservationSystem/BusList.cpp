@@ -19,11 +19,23 @@ void BusList::getBuses() {
 	}
 }
 
-void BusList::getBusesavailable() {
-	for (auto it = Bus_List.begin(); it != Bus_List.end(); ++it) {
-		if (it->IsBusAvailable())
-			it->getBusInformation();
+bool BusList::isBusavailable(int busnumber) {
+	list<Bus> busesavailable = this->getBusesavailable();
+	for (Bus& bus : busesavailable) {
+		if (bus.getBusID() == busnumber && bus.IsBusAvailable())
+			return true;
 	}
+	return false;
+
+}
+
+list<Bus> BusList::getBusesavailable() {
+	list<Bus> busesavailable;
+	for (Bus& bus : Bus_List) {
+		if (bus.IsBusAvailable())
+			busesavailable.push_back(bus);
+	}
+	return busesavailable;
 }
 
 Bus BusList::getBuswithID(int id) {

@@ -4,11 +4,11 @@ using namespace std;
 class Bus
 {
 private:
-	static const int seat_rows = 10;
+	static const int seat_rows = 1;
 	static const int seats_per_row = 4;
 public:
 	Bus();
-	Bus(int BusID, string driver, string arrivaltime, string departuretime, string destination, bool available);
+	Bus(int BusID, string driver, string arrivaltime, string departuretime, string destination);
 
 	int getBusID();
 	void setBusID(int BusID);
@@ -43,6 +43,5 @@ private:
 	string destination;
 	int** seats = new int*[seat_rows * seats_per_row];
 	string** passengers = new string * [seat_rows * seats_per_row];
-	bool available;
 };
 

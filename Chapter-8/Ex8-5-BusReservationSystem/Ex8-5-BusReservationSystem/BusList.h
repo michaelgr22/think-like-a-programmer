@@ -12,7 +12,8 @@ public:
 	void addBus(Bus bus);
 	void removeBus(Bus bus);
 	void getBuses();
-	void getBusesavailable();
+	bool isBusavailable(int busnumber);
+	list<Bus> getBusesavailable();
 	Bus getBuswithID(int id);
 	list<Bus> getBusList();
 private:

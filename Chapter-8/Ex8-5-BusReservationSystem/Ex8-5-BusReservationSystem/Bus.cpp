@@ -10,8 +10,6 @@ Bus::Bus() {
 	this->driver = " ";
 	this->arrivaltime = "00:00:00";
 	this->departuretime = "00:00:00";
-	this->destination = " ";
-	this->available = false;
 
 	//Initialize seats 
 	for (int i = 0; i < seat_rows * seats_per_row; i++) {
@@ -40,13 +38,14 @@ Bus::Bus() {
 	}
 }
 
-Bus::Bus(int BusID, string driver, string arrivaltime, string departuretime, string destination, bool available) {
+Bus::Bus(int BusID, string driver, string arrivaltime, string departuretime, string destination) {
+
+
 	this->BusID = BusID;
 	this->driver = driver;
 	this->arrivaltime = arrivaltime;
 	this->departuretime = departuretime;
 	this->destination = destination;
-	this->available = available;
 
 	//Initialize seats 
 	for (int i = 0; i < seat_rows * seats_per_row; i++) {
@@ -203,7 +202,14 @@ void Bus::removeReservation(int seatnumber) {
 }
 
 bool Bus::IsBusAvailable() {
-	return this->available;
+	for (int row = 0; row < seat_rows; row++) {
+		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
+			if (this->passengers[row][seat_in_row] == " ") {
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 void Bus::destructor() {
