@@ -2,6 +2,8 @@
 #include "Bus.h"
 #include <list>
 #include <iostream>
+#include <sstream>
+#include <fstream>
 using std::cin;
 using std::cout;
 
@@ -16,6 +18,7 @@ public:
 	list<Bus> getBusesavailable();
 	Bus getBuswithID(int id);
 	list<Bus> getBusList();
+	void readfromFile();
 private:
 	list <Bus> Bus_List;
 };

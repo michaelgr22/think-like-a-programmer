@@ -35,6 +35,10 @@ int main()
 
 
     BusList buslist;
+
+    buslist.readfromFile();
+    
+
     int choice;
     do {
         
