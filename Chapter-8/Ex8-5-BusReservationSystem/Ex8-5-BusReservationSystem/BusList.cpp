@@ -50,26 +50,27 @@ list<Bus> BusList::getBusList() {
 }
 
 void BusList::readfromFile() {
-	
-	
+		
 	ifstream file;
 
 	file.open("data.txt");
 
 	string line;
 
-	string id;
-	string driver;
-	string arrivaltime;
-	string departuretime;
-	string destination;
-	string seats_passengers_complete_str;
-	list<string> seatnumbers_str;
-	list<string> passengers;
+
 
 
 	while (!file.eof()) {
 		
+		string id;
+		string driver;
+		string arrivaltime;
+		string departuretime;
+		string destination;
+		string seats_passengers_complete_str;
+		list<string> seatnumbers_str;
+		list<string> passengers;
+
 		getline(file, line);
 
 		istringstream lineStream(line);
