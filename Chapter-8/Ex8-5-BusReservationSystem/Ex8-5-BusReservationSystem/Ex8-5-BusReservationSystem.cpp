@@ -56,22 +56,22 @@ int main()
             int BusId;
             cin >> BusId;
             while (cin.fail()) {
-                cout << "Error: Enter a number!" << endl;
+                cout << "Error: Enter a number!" << std::endl;
                 cin.clear();
                 cin.ignore(256, '\n');
                 cin >> BusId;
             }
             cout << "driver: " << "\n";
-            string driver;
+            std::string driver;
             cin >> driver;
             cout << "Arrival Time (Format: 00:00:00): " << "\n";
-            string arrivaltime;
+            std::string arrivaltime;
             cin >> arrivaltime;
             cout << "Departure Time (Format: 00:00:00): " << "\n";
-            string departuretime;
+            std::string departuretime;
             cin >> departuretime;
             cout << "Destination: " << "\n";
-            string destination;
+            std::string destination;
             cin >> destination;
 
             Bus newbus(BusId, driver, arrivaltime, departuretime, destination);
@@ -94,7 +94,7 @@ int main()
             int seatnumber;
             cin >> seatnumber;
             cout << "Enter your name: " << "\n";
-            string name;
+            std::string name;
             cin >> name;
 
             bustoreservate.addReservation(seatnumber, name);

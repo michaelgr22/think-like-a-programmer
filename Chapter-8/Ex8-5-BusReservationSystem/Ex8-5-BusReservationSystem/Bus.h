@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-using namespace std;
+
 class Bus
 {
 private:
@@ -8,26 +8,26 @@ private:
 	static const int seats_per_row = 4;
 public:
 	Bus();
-	Bus(int BusID, string driver, string arrivaltime, string departuretime, string destination);
+	Bus(int BusID, std::string driver, std::string arrivaltime, std::string departuretime, std::string destination);
 
 	int getBusID();
 	void setBusID(int BusID);
-	string getdriver();
-	void setdriver(string driver);
-	string getarrivaltime();
-	void setarrivaltime(string arrivaltime);
-	string getdeparturetime();
-	void setdeparturetime(string departuretime);
-	string getdestination();
-	void setdestination(string destination);
+	std::string getdriver();
+	void setdriver(std::string driver);
+	std::string getarrivaltime();
+	void setarrivaltime(std::string arrivaltime);
+	std::string getdeparturetime();
+	void setdeparturetime(std::string departuretime);
+	std::string getdestination();
+	void setdestination(std::string destination);
 	int** getseats();
 	void setseats(int *seats[seat_rows * seats_per_row]);
-	string** getpassengers();
-	void setpassengers(string* seats[seat_rows * seats_per_row]);
+	std::string** getpassengers();
+	void setpassengers(std::string* seats[seat_rows * seats_per_row]);
 	int getseat_rows();
 	int getseats_per_row();
 
-	void addReservation(int seatnumber, string passengername);
+	void addReservation(int seatnumber, std::string passengername);
 	void removeReservation(int seatnumber);
 	void getavailableSeats();
 	void getBusInformation();
@@ -39,11 +39,11 @@ public:
 
 private:
 	int BusID;
-	string driver;
-	string arrivaltime;
-	string departuretime;
-	string destination;
+	std::string driver;
+	std::string arrivaltime;
+	std::string departuretime;
+	std::string destination;
 	int** seats = new int*[seat_rows * seats_per_row];
-	string** passengers = new string * [seat_rows * seats_per_row];
+	std::string** passengers = new std::string * [seat_rows * seats_per_row];
 };
 

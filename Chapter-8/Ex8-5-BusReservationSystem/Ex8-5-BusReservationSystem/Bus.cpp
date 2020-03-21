@@ -1,6 +1,6 @@
 #include "Bus.h"
-
 #include <iostream>
+
 using std::cin;
 using std::cout;
 
@@ -27,7 +27,7 @@ Bus::Bus() {
 
 	//Initialize passengers 
 	for (int i = 0; i < seat_rows * seats_per_row; i++) {
-		this->passengers[i] = new string[seat_rows * seats_per_row];
+		this->passengers[i] = new std::string[seat_rows * seats_per_row];
 	}
 
 	//fill passengers
@@ -38,7 +38,7 @@ Bus::Bus() {
 	}
 }
 
-Bus::Bus(int BusID, string driver, string arrivaltime, string departuretime, string destination) {
+Bus::Bus(int BusID, std::string driver, std::string arrivaltime, std::string departuretime, std::string destination) {
 
 
 	this->BusID = BusID;
@@ -63,7 +63,7 @@ Bus::Bus(int BusID, string driver, string arrivaltime, string departuretime, str
 
 	//Initialize passengers 
 	for (int i = 0; i < seat_rows * seats_per_row; i++) {
-		this->passengers[i] = new string[seat_rows * seats_per_row];
+		this->passengers[i] = new std::string[seat_rows * seats_per_row];
 	}
 
 	//fill passengers
@@ -80,28 +80,28 @@ int Bus::getBusID() {
 void Bus::setBusID(int BusID) {
 	this->BusID = BusID;
 }
-string Bus::getdriver() {
+std::string Bus::getdriver() {
 	return this->driver;
 }
-void Bus::setdriver(string driver) {
+void Bus::setdriver(std::string driver) {
 	this->driver = driver;
 }
-string Bus::getarrivaltime() {
+std::string Bus::getarrivaltime() {
 	return this->arrivaltime;
 }
-void Bus::setarrivaltime(string arrivaltime) {
+void Bus::setarrivaltime(std::string arrivaltime) {
 	this->arrivaltime = arrivaltime;
 }
-string Bus::getdeparturetime() {
+std::string Bus::getdeparturetime() {
 	return this->departuretime;
 }
-void Bus::setdeparturetime(string departuretime) {
+void Bus::setdeparturetime(std::string departuretime) {
 	this->departuretime = departuretime;
 }
-string Bus::getdestination() {
+std::string Bus::getdestination() {
 	return this->destination;
 }
-void Bus::setdestination(string destination) {
+void Bus::setdestination(std::string destination) {
 	this->destination = destination;
 }
 int** Bus::getseats() {
@@ -122,10 +122,10 @@ int Bus::getseats_per_row() {
 	return this->seats_per_row;
 }
 
-string** Bus::getpassengers() {
+std::string** Bus::getpassengers() {
 	return this->passengers;
 }
-void Bus::setpassengers(string* passengers[seat_rows * seats_per_row]) {
+void Bus::setpassengers(std::string* passengers[seat_rows * seats_per_row]) {
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
 			this->passengers[row][seat_in_row] = passengers[row][seat_in_row];
@@ -180,7 +180,7 @@ void Bus::getavailableSeats() {
 	}
 }
 
-void Bus::addReservation(int seatnumber, string passengername) {
+void Bus::addReservation(int seatnumber, std::string passengername) {
 	int count = 1;
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {

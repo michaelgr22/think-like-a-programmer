@@ -15,12 +15,12 @@ public:
 	void removeBus(Bus bus);
 	void getBuses();
 	bool isBusavailable(int busnumber);
-	list<Bus> getBusesavailable();
+	std::list<Bus> getBusesavailable();
 	Bus getBuswithID(int id);
-	list<Bus> getBusList();
+	std::list<Bus> getBusList();
 	void readfromFile();
 	void writetoFile();
 private:
-	list <Bus> Bus_List;
+	std::list <Bus> Bus_List;
 };
 
