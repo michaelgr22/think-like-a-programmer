@@ -1,2 +1,2 @@
-1,Michael,00,01,Munich,2-Mi;3-LoL
-2,Hubert,01,02,Berlin,1-la;4-ta
+1,Michael,01,02,Munich,1-Lulu;3-Kac;
+2,Herbert,01,02,Berlin,2-Norbert;3-Hans;

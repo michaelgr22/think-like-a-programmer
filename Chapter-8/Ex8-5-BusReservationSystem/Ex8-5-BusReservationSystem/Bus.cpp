@@ -30,7 +30,7 @@ Bus::Bus() {
 		this->passengers[i] = new string[seat_rows * seats_per_row];
 	}
 
-	//fill seats with numbers
+	//fill passengers
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
 			this->passengers[row][seat_in_row] = " ";
@@ -66,7 +66,7 @@ Bus::Bus(int BusID, string driver, string arrivaltime, string departuretime, str
 		this->passengers[i] = new string[seat_rows * seats_per_row];
 	}
 
-	//fill seats with numbers
+	//fill passengers
 	for (int row = 0; row < seat_rows; row++) {
 		for (int seat_in_row = 0; seat_in_row < seats_per_row; seat_in_row++) {
 			this->passengers[row][seat_in_row] = " ";
@@ -113,6 +113,13 @@ void Bus::setseats(int *seats[seat_rows * seats_per_row]) {
 			this->seats[row][seat_in_row] = seats[row][seat_in_row];
 		}
 	}
+}
+
+int Bus::getseat_rows() {
+	return this->seat_rows;
+}
+int Bus::getseats_per_row() {
+	return this->seats_per_row;
 }
 
 string** Bus::getpassengers() {

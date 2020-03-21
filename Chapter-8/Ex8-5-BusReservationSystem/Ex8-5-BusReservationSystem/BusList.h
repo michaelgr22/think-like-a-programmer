@@ -19,6 +19,7 @@ public:
 	Bus getBuswithID(int id);
 	list<Bus> getBusList();
 	void readfromFile();
+	void writetoFile();
 private:
 	list <Bus> Bus_List;
 };

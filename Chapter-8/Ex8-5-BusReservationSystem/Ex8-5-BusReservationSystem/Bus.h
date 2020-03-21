@@ -24,6 +24,8 @@ public:
 	void setseats(int *seats[seat_rows * seats_per_row]);
 	string** getpassengers();
 	void setpassengers(string* seats[seat_rows * seats_per_row]);
+	int getseat_rows();
+	int getseats_per_row();
 
 	void addReservation(int seatnumber, string passengername);
 	void removeReservation(int seatnumber);

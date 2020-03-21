@@ -110,6 +110,7 @@ int main()
         }
         else if (choice == 5)
         {
+            buslist.writetoFile();
         }
         else
         {
